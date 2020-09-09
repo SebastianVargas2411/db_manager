@@ -13,6 +13,7 @@ import { LayoutModule } from 'app/layout/layout.module';
 import { AppComponent } from 'app/app.component';
 import { appRoutes } from 'app/app.routing';
 import { ConfigurationComponent } from './modules/admin/configuration/configuration.component';
+import { MatCardModule } from '@angular/material/card';
 
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',

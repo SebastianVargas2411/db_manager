@@ -18,13 +18,15 @@ export const defaultNavigation: TreoNavigationItem[] = [
                     {
                         id: 'manager.projects.new',
                         type: 'basic',
-                        title: 'Nuevo',                        
+                        title: 'Nuevo',  
+                        icon: 'add',                      
                         link: '/projects/new'
                     },
                     {
                         id: 'manager.projects.mine',
                         type: 'basic',
-                        title: 'Mis proyectos',                        
+                        title: 'Mis proyectos',  
+                        icon: 'list',                   
                         link: '/projects/list'
                     }
                 ]
@@ -33,19 +35,20 @@ export const defaultNavigation: TreoNavigationItem[] = [
                 id   : 'manager.collections',
                 title: 'Colecciones',
                 type : 'collapsable',
-                icon: "dns",
-                //link : '/collections',
+                icon: "heroicons_solid:collection",
                 children: [
                     {
                         id: 'manager.collections.new',
                         type: 'basic',
                         title: 'Nuevo',
+                        icon: 'add',
                         link: '/collections/new'
                     },
                     {
                         id: 'manager.collections.mine',
                         type: 'basic',
                         title: 'Mis colecciones',
+                        icon: 'list',
                         link: '/collections/list'
 
                     }
@@ -64,7 +67,7 @@ export const defaultNavigation: TreoNavigationItem[] = [
                 id   : 'manager.configuration',
                 title: 'Configuración',
                 type : 'basic',
-                icon : 'apps',
+                icon : 'settings',
                 link : '/configuration'
             },
             /*{

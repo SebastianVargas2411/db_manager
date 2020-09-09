@@ -1,0 +1,69 @@
+@import 'treo';
+
+
+
+// -----------------------------------------------------------------------------------------------------
+// @ Theming
+// -----------------------------------------------------------------------------------------------------
+@include treo-theme {
+
+    $is-dark: map-get($theme, is-dark);
+
+    app-projects {
+        
+        .projects-list {
+
+            .project {
+                treo-card {
+                    position: relative;
+        
+                    &::before{
+                        content: '';
+        
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+        
+                    }
+        
+                    &:hover, &:active, &:focus {
+                        .actions {
+                            top: 0;
+                        }
+                    }
+        
+                    &.selected {   
+                        //Css para proyecto seleccionado
+        
+                    }
+        
+                    .actions {
+                        position: absolute;
+                        width: 100%;
+                        top: -100%;
+                        display: flex;
+                        justify-content: flex-end;
+        
+                        transition: all .3s ease-in-out;
+        
+                        @if $is-dark {
+                            background: #000;
+                          }
+                        @else {
+
+                            background: #fff;
+                        }  
+                        box-shadow: 0 1px 6px rgba(0,0,0, .1);
+                    }
+                }
+        
+                .project-caption{
+                    width: 100%;
+        
+                    padding: 16px 8px 8px;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
