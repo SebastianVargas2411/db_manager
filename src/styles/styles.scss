@@ -4,3 +4,30 @@
 // @ Styles from this file will override anything from 'vendors.scss' file allowing customizations and
 //  modifications of third party libraries.
 // -----------------------------------------------------------------------------------------------------
+.color-picker {
+    border: 1px solid #cfd8e3!important;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06) ;
+    border-radius: 0.25rem !important;
+    margin-bottom: 16px!important;
+}
+
+@import 'treo';
+
+@include treo-theme {
+    $is-dark: map-get($theme, is-dark);
+
+    @if $is-dark {
+        .color-picker {
+            background: #27303f!important;
+            border: 1px solid rgba(241, 245, 249, 0.12)!important;
+
+            .box input, .box div{
+                color: #fff!important;
+            }
+
+            .type-policy {
+                background-color: rgba(255,255,255,.5)!important;
+            }
+        }
+    }
+}

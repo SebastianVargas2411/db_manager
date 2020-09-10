@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CollectionsComponent } from './collections.component';
+import { CollectionsComponent } from './pages/collections/collections.component';
+import { NewCollectionComponent } from './pages/new-collection/new-collection.component';
 
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
   },
   {
     path: "new",
-    loadChildren: () => import('app/modules/admin/collections/new-collection/new-collection.module').then(m => m.NewCollectionModule)
+    component: NewCollectionComponent
   },
 ];
 

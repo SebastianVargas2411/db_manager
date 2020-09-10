@@ -1,6 +1,8 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { ProjectsComponent } from './projects.component';
+import { ProjectsComponent } from './pages/projects/projects.component';
+import { ProjectFormComponent } from './components/project-form/project-form.component';
+import { NewProjectComponent } from './pages/new-project/new-project.component';
 
 const routes: Routes = [
   {
@@ -14,8 +16,9 @@ const routes: Routes = [
   },
   {
     path: "new",
-    loadChildren: () => import('app/modules/admin/projects/new-project/new-project.module').then(m => m.NewProjectModule)
+    component: NewProjectComponent
   },
+ 
 ];
 
 @NgModule({

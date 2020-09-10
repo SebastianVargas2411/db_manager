@@ -1,0 +1,24 @@
+<div class="content-layout fullwidth-standard-normal-scroll">
+    <div class="header">
+        <div class="container" style="width: 100%;">
+          <div class="breadcrumb">
+            <span class="path">Proyectos</span>
+            <span class="separator">/</span>
+            <span class="path">Inicio</span>
+          </div>
+          <div class="flex flex-row justify-between items-center">
+            <h1>Mis proyectos</h1>
+            <a class=" no-underline"
+                mat-raised-button
+                [color]="'primary'"
+                (click)="openProjectForm(false)">
+                Nuevo proyecto
+            </a>
+        </div>        
+        </div>
+      </div>
+
+    <div class="m-8 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4 projects-list">
+        <app-project-list-item (handleDelete)="handleDelete($event)" (handleEdit)="handleEdit($event)" *ngFor="let project of projects" class="project" [project]="project"></app-project-list-item>       
+    </div>
+</div>

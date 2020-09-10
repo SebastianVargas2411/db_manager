@@ -1,0 +1,85 @@
+<form class="bg-card shadow rounded p-8" [formGroup]="projectForm" (ngSubmit)="save(projectForm.value)">
+    <div class="grid grid-cols-6 gap-4">
+        <div class="col-span-6 sm:col-span-3 md:col-span-3 lg:col-span-2 xl:col-span-2">
+          <treo-card>
+            <img
+              src="https://vignette.wikia.nocookie.net/memes-pedia/images/2/2c/89592b3392fee110134235e95d80dbf7.jpg/revision/latest?cb=20200527113030&path-prefix=es"
+            />
+          </treo-card>
+
+          <div class="flex justify-center">
+
+              <button class="px-6 m-4" mat-flat-button [color]="'accent'">
+                <mat-icon class="mr-2">add_photo_alternate</mat-icon>
+                Cargar logo
+              </button>
+          </div>
+        </div>
+        <div class="col-span-6 sm:col-span-3 md:col-span-3 lg:col-span-4 xl:col-span-4 p-4">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4"
+          >
+            <mat-form-field>
+              <mat-label>Nombre</mat-label>
+              <input matInput formControlName="title"/>
+              <mat-icon matSuffix [svgIcon]="'create_new_folder'"></mat-icon>
+              <mat-hint *ngFor="let validation of validation_messages.title">
+                <mat-hint
+                  *ngIf="projectForm.get('title').hasError(validation.type) && 
+                               (projectForm.get('title').dirty ||
+                               projectForm.get('title').touched)"
+                >
+                {{ validation.message}}
+                </mat-hint>
+              </mat-hint>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Alias</mat-label>
+              <input matInput formControlName="alias"/>
+              <mat-icon matSuffix [svgIcon]="'library_add'"></mat-icon>
+              <mat-hint *ngFor="let validation of validation_messages.alias">
+                <mat-hint
+                  *ngIf="projectForm.get('alias').hasError(validation.type) && 
+                               (projectForm.get('alias').dirty ||
+                               projectForm.get('alias').touched)"
+                >
+                {{ validation.message}}
+                </mat-hint>
+              </mat-hint>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Color principal</mat-label>
+              <input matInput formControlName="color_p" [value]="colorPrincipal" readonly />
+              <div class="color-pick" style="background: {{ colorPrincipal }}"
+              [cpPositionRelativeToArrow]="'true'" [cpPosition]="'top-left'" [(colorPicker)]="colorPrincipal" (colorPickerChange)="onChangeColor($event)"></div>
+              <mat-hint *ngFor="let validation of validation_messages.color_p">
+                <mat-hint
+                  *ngIf="projectForm.get('color_p').hasError(validation.type) && 
+                               (projectForm.get('color_p').dirty ||
+                               projectForm.get('color_p').touched)"
+                >
+                {{ validation.message}}
+                </mat-hint>
+              </mat-hint>
+            </mat-form-field>
+
+              <mat-form-field>
+                <mat-label>Color del texto</mat-label>                  
+                <input matInput formControlName="color_t" [value]="colorText" readonly />
+                <div class="color-pick" style="background: {{ colorText }}"
+                [cpPositionRelativeToArrow]="'true'" [cpPosition]="'top-left'" [(colorPicker)]="colorText"
+                (colorPickerChange)="onChangeColor($event)"></div>
+              </mat-form-field>
+            
+          </div>
+        </div>
+        <div class="col-span-6">
+          <div class="flex items-center justify-end px-4">
+            <button *ngIf="cancelable" (click)="close()" mat-button>Cancelar</button>
+            <button class="px-6 ml-3" mat-flat-button [color]="'primary'" [disabled]="!projectForm.valid"  (click)="save(projectForm.value)">
+              Guardar
+            </button>
+          </div>
+        </div>
+      </div>
+  </form>
