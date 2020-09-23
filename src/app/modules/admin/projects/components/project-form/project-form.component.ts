@@ -11,8 +11,9 @@ import { Project } from '../../models/project.model';
   styleUrls: ['./project-form.component.scss']
 })
 export class ProjectFormComponent implements OnInit {
-  public colorPrincipal: string = '#f60';
-  public colorText: string = '#f2f2f2';
+  colorPrincipal: string = '#f60';
+  colorText: string = '#f2f2f2';
+
   @Input() cancelable: boolean = false;
   @Input() project: Project;
   @Input() editable: boolean;
@@ -22,21 +23,18 @@ export class ProjectFormComponent implements OnInit {
   croppedImage: any = '';
 
   projectForm: FormGroup;
+  domainForm: FormGroup;
+
+
   validation_messages = {
     title: [
-      {type:"required", message:"El nombre es requerido"},
-      {type:"minlength", message:"El nombre debe ser minimo de 3 letras"}
+      {type:"required", message:"El titulo es requerido"},
+      {type:"minlength", message:"El titulo debe ser minimo de 3 letras"}
     ],
     alias: [
-      {type:"required", message:"alias es requerido"},
-      {type:"minlength", message:"alias debe ser minimo de 3 letras"}
-    ],
-    color_p: [
-      {type:"required", message:"El color principal es requerido"},
-    ],
-    color_t: [
-      {type:"required", message:"El color secundario es requerido"},
-    ],
+      {type:"required", message:"El alias es requerido"},
+      {type:"minlength", message:"El alias debe ser minimo de 3 letras"}
+    ]
   };
 
   constructor(
@@ -76,9 +74,7 @@ export class ProjectFormComponent implements OnInit {
     if(this.editable){
       this.projectForm.patchValue({
         title: this.project.title,
-        alias: this.project.alias,
-        color_p: this.project.color_principal,
-        color_t: this.project.color_text
+        alias: this.project.alias        
       });
       this.colorPrincipal = this.project.color_principal;
       this.colorText = this.project.color_text;
@@ -93,11 +89,6 @@ export class ProjectFormComponent implements OnInit {
   }
 
   save(value){
-    this.projectForm.patchValue({
-      color_p: this.colorPrincipal,
-      color_t: this.colorText
-    });
-    console.log(this.colorPrincipal);
     console.log(value);
   }
 
@@ -105,4 +96,21 @@ export class ProjectFormComponent implements OnInit {
     this.closeModal.emit(this.cancelable);
   }
 
+  fileChangeEvent(event: any): void {
+      this.imageChangedEvent = event;
+  }
+  imageCropped(event: ImageCroppedEvent) {
+      this.croppedImage = event.base64;
+  }
+  imageLoaded() {
+      // show cropper
+  }
+  cropperReady() {
+      // cropper ready
+  }
+  loadImageFailed() {
+      // show message
+  }
+
+  
 }

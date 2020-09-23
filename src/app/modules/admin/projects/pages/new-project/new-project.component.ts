@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ColorPickerService, Cmyk } from 'ngx-color-picker';
 import { FormControl } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
-
+import { ImageCroppedEvent } from 'ngx-image-cropper';
 
 @Component({
   selector: 'app-new-project',
@@ -10,13 +10,10 @@ import { ThemePalette } from '@angular/material/core';
   styleUrls: ['./new-project.component.scss']
 })
 export class NewProjectComponent implements OnInit {
-
   constructor() {
   
    }
 
   ngOnInit(): void {
   }
-
-
 }

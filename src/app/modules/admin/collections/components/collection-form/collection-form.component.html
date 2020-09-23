@@ -1,1 +1,66 @@
-<p>collection-form works!</p>
+<form [formGroup]="collectionForm" (ngSubmit)="save(collectionForm.value)">
+    <div class="bg-card shadow rounded p-8">
+        <div class="grid grid-cols-6 gap-4">
+            <div class="col-span-6 px-4">
+                <div class="text-lg font-bold mb-2">Información de la colección</div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4">
+                    <mat-form-field>
+                        <mat-label>Titulo<mat-label style="color: red;">*</mat-label>
+                        </mat-label>
+                        <input matInput formControlName="title" />
+                        <mat-icon matSuffix [svgIcon]="'create_new_folder'"></mat-icon>
+
+                        <mat-hint>
+                            <ng-container *ngFor="let validation of validation_messages.title">
+                                {{
+                                collectionForm.get("title").hasError(validation.type) &&
+                                (collectionForm.get("title").dirty ||
+                                collectionForm.get("title").touched)
+                                    ? validation.message
+                                    : ""
+                                }}
+                            </ng-container>
+                        </mat-hint>
+                    </mat-form-field>
+                    <mat-form-field>
+                        <mat-label>Alias<mat-label style="color: red;">*</mat-label>
+                        </mat-label>
+                        <input matInput formControlName="alias" />
+                        <mat-icon matSuffix [svgIcon]="'library_add'"></mat-icon>
+                        <mat-hint>
+                            <ng-container *ngFor="let validation of validation_messages.alias">
+                                {{
+                                collectionForm.get("alias").hasError(validation.type) &&
+                                (collectionForm.get("alias").dirty ||
+                                collectionForm.get("alias").touched)
+                                ? validation.message
+                                : ""
+                                }}
+                            </ng-container>
+                        </mat-hint>
+                    </mat-form-field>
+                </div>
+                <div  class="grid grid-cols-1 mt-4">
+                    <div class="text-lg font-bold mb-2">Fields</div>
+                        <app-field-form (_emitAction)= "fieldAction($event)" class="shadow"></app-field-form>
+                        <app-field-form (_emitAction)= "fieldAction($event)"
+                        editable="true" 
+                        *ngFor="let field of fields; let i = index" 
+                        [index]="i"
+                        [field]="field"></app-field-form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-span-6 bg-card shadow rounded p-4 mt-4">
+        <div class="flex items-center justify-end px-4">
+            <!--button *ngIf="cancelable" (click)="close()" mat-button>Cancelar</button-->
+            <button class="px-6 ml-3" mat-flat-button [color]="'primary'" [disabled]="!collectionForm.valid"
+                (click)="save(collectionForm.value)">
+                Agregar
+            </button>
+        </div>
+    </div>
+</form>

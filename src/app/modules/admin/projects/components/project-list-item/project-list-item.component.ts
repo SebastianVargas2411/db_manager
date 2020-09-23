@@ -14,7 +14,6 @@ export class ProjectListItemComponent implements OnInit {
   @Output() handleDelete = new EventEmitter<{}>();
 
   ngOnInit(): void {
-    console.log(this.project);
   }
 
   edit(){

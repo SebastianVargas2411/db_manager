@@ -1,10 +1,10 @@
 
 <h2 mat-dialog-title>{{ editable ? 'Editar Proyecto' : 'Agregar Proyecto'}}</h2>
-<mat-dialog-content class="p-0">
+<mat-dialog-content class="p-4">
     <app-project-form [editable]="editable" [project]="project" cancelable="true" (closeModal)="close($event)"></app-project-form>
 </mat-dialog-content>
 
 <!--mat-dialog-actions align="end" class="p-3">
     <button mat-button mat-dialog-close>Cancelar</button>
     <button class="px-6 ml-3" mat-flat-button [color]="'primary'" [mat-dialog-close]="data">Guardar</button>
-  </mat-dialog-actions -->
+  </mat-dialog-actions--> 

@@ -20,10 +20,14 @@ import { MatInputModule } from '@angular/material/input';
 import { ProjectFormModalComponent } from './components/project-form-modal/project-form-modal.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { ReactiveFormsModule } from '@angular/forms';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { DomainFormComponent } from './components/domain-form/domain-form.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 
 @NgModule({
-  declarations: [ProjectsComponent, NewProjectComponent, ProjectFormComponent, ProjectListItemComponent, ProjectFormModalComponent, ],
+  declarations: [ProjectsComponent, NewProjectComponent, ProjectFormComponent, ProjectListItemComponent, ProjectFormModalComponent, DomainFormComponent, ],
   imports: [
     CommonModule,
     ProjectsRoutingModule,
@@ -32,16 +36,17 @@ import { ReactiveFormsModule } from '@angular/forms';
     TreoCardModule,
     MatButtonModule,
     MatIconModule,
-    TreoCardModule,
-    MatButtonModule,
-    MatIconModule,
-    MatCardModule,    
     ColorPickerModule,
     MatFormFieldModule,
     MatInputModule,
     MatDialogModule,
     ImageCropperModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule,
+    MatSlideToggleModule,
+    MatTableModule,
+    
+
   ]
 })
 export class ProjectsModule { }

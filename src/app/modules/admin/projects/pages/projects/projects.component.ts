@@ -30,7 +30,7 @@ export class ProjectsComponent implements OnInit {
     {
       id_project: 1,
       id_user: 2,
-      title: "Mi Segundo Proyecto-",
+      title: "Mi Segundo Proyecto",
       alias:"p2",
       color_principal:"#0023ff",
       color_text:"#f90101",
