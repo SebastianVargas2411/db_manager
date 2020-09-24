@@ -19,12 +19,16 @@ export class CollectionFormComponent implements OnInit {
   fields = [{
     title: "name",
     alias: "name",
-    type: 1
+    type: 1,
+    default: 255,
+    null: true
   },
   {
     title: "age",
     alias: "age",
-    type: 3
+    type: 3,
+    default: 11,
+    null: false
   },
 ];
 
@@ -35,7 +39,8 @@ export class CollectionFormComponent implements OnInit {
     ],
     alias: [
       {type:"required", message:"El alias es requerido"},
-      {type:"minlength", message:"El alias debe ser minimo de 3 letras"}
+      {type:"minlength", message:"El alias debe ser minimo de 3 letras"},
+      {type:"pattern", message:"no puede contener caracteres especiales ni mayusculas"}
     ]
   };
 
@@ -53,7 +58,8 @@ export class CollectionFormComponent implements OnInit {
         "", 
         Validators.compose([
         Validators.required,
-        Validators.minLength(3)
+        Validators.minLength(3),
+        Validators.pattern("^[a-z0-9_]+[a-z0-9_ ]+$")
       ])
       ),
     },
@@ -84,6 +90,17 @@ export class CollectionFormComponent implements OnInit {
     }
 
   //  console.log(this.fields);
+  }
+
+  aliasChange(){
+    this.collectionForm.patchValue({
+      alias: this.replaceSpace(this.collectionForm.value.alias)
+    })
+      
+  }
+
+  replaceSpace(value){
+    return value.split(' ').join('_');
   }
 
 }

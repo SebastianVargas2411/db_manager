@@ -18,6 +18,8 @@ export class FieldFormComponent implements OnInit {
 
   emitObject = {}
   update = false;
+  currentInputType = 1;
+
   types: any[] = [
     {id: 1, type: 'varchar', length: 255},
     {id: 2, type: 'boolean'},
@@ -32,7 +34,8 @@ export class FieldFormComponent implements OnInit {
     ],
     alias: [
       {type:"required", message:"El alias es requerido"},
-      {type:"minlength", message:"El alias debe ser minimo de 3 letras"}
+      {type:"minlength", message:"El alias debe ser minimo de 3 letras"},
+      {type:"pattern", message:"no puede contener caracteres especiales ni mayusculas"}
     ]
   };
 
@@ -49,10 +52,13 @@ export class FieldFormComponent implements OnInit {
         "", 
         Validators.compose([
         Validators.required,
-        Validators.minLength(3)
+        Validators.minLength(3),
+        Validators.pattern("^[a-z0-9_]+[a-z0-9_ ]+$"),
       ])
       ),
-      type: new FormControl(),
+      type: new FormControl(this.currentInputType),
+      default: new FormControl(""),
+      null: new FormControl(false),
     },
     );
   }
@@ -65,10 +71,15 @@ export class FieldFormComponent implements OnInit {
       this.fieldForm.patchValue({
         title: this.field.title,
         alias: this.field.alias,
-        type:  this.field.type  
+        type:  this.field.type,
+        default: this.field.default,
+        null: this.field.null
       });
       this.fieldForm.valueChanges.subscribe(value =>{
-        if(this.field.alias != value.alias || this.field.title != value.title){
+        if(
+          this.field.alias != value.alias || this.field.title != value.title || 
+          this.field.type != value.type || this.field.default != value.default || this.field.null != value.null)
+          {
           this.update = true;
         }
         else{
@@ -95,5 +106,22 @@ export class FieldFormComponent implements OnInit {
   edit(){
     this.emitObject = {action:2, value:{field:this.fieldForm.value, index: this.index}}
     this.emitAction();
+  }
+
+  onChange(){
+    this.currentInputType = this.fieldForm.value.type;
+    console.log(this.fieldForm.value.type)
+  }
+
+
+  aliasChange(){
+    this.fieldForm.patchValue({
+      alias: this.replaceSpace(this.fieldForm.value.alias)
+    })
+      
+  }
+
+  replaceSpace(value){
+    return value.split(' ').join('_');
   }
 }

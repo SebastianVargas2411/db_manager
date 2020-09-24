@@ -26,7 +26,7 @@
                     <mat-form-field>
                         <mat-label>Alias<mat-label style="color: red;">*</mat-label>
                         </mat-label>
-                        <input matInput formControlName="alias" />
+                        <input  (change)="aliasChange()" matInput formControlName="alias" />
                         <mat-icon matSuffix [svgIcon]="'library_add'"></mat-icon>
                         <mat-hint>
                             <ng-container *ngFor="let validation of validation_messages.alias">
