@@ -12,7 +12,7 @@ export class CollectionFormComponent implements OnInit {
 
   collectionForm: FormGroup;
   @Input() cancelable: boolean = false;
-  @Input() collection: Collection;
+  @Input() collection: any;
   @Input() editable: boolean;
   @Output() closeModal = new EventEmitter<{}>();
 
@@ -67,6 +67,14 @@ export class CollectionFormComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    console.log(this.collection);
+    console.log(this.editable);
+    if(this.editable){
+      this.collectionForm.patchValue({
+        title: this.collection.title,
+        alias: this.collection.alias        
+      });
+    }
   }
 
   save(data){
@@ -96,11 +104,14 @@ export class CollectionFormComponent implements OnInit {
     this.collectionForm.patchValue({
       alias: this.replaceSpace(this.collectionForm.value.alias)
     })
-      
   }
 
   replaceSpace(value){
     return value.split(' ').join('_');
+  }
+
+  close(){
+    this.closeModal.emit(this.cancelable);
   }
 
 }

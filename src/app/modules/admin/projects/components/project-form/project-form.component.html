@@ -46,7 +46,7 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label>Alias<mat-label style="color: red;">*</mat-label></mat-label>
-            <input matInput formControlName="alias" />
+            <input  (change)="aliasChange()" matInput formControlName="alias" />
             <mat-icon matSuffix [svgIcon]="'library_add'"></mat-icon>
             <mat-hint>
               <ng-container *ngFor="let validation of validation_messages.alias">
@@ -62,7 +62,7 @@
           </mat-form-field>
           <mat-form-field>
             <mat-label>Color principal</mat-label>
-            <input matInput formControlName="color_p" [(ngModel)]="colorPrincipal" readonly />
+            <input matInput formControlName="color_principal" [(ngModel)]="colorPrincipal" readonly />
             <div class="color-pick" style="background: {{ colorPrincipal }}" [cpPositionRelativeToArrow]="'true'"
               [cpPosition]="'top-left'" [(colorPicker)]="colorPrincipal" (colorPickerChange)="onChangeColor($event)">
             </div>
@@ -70,19 +70,19 @@
 
           <mat-form-field>
             <mat-label>Color del texto</mat-label>
-            <input matInput formControlName="color_t" [value]="colorText" readonly />
+            <input matInput formControlName="color_text" [value]="colorText" readonly />
             <div class="color-pick" style="background: {{ colorText }}" [cpPositionRelativeToArrow]="'true'"
               [cpPosition]="'top-left'" [(colorPicker)]="colorText" (colorPickerChange)="onChangeColor($event)"></div>
           </mat-form-field>
         </div>
 
-        <div  class="grid grid-cols-1 mt-4">
+        <!--div  class="grid grid-cols-1 mt-4">
           <div class="text-lg font-bold mb-2">Control de origenes</div>
             <div class="grid grid-cols-1">
               <app-domain-form></app-domain-form>
 
             </div>
-        </div>
+        </div-->
 
       </div>
     </div>

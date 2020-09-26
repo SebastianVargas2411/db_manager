@@ -1,1 +1,11 @@
-<p>collection-list-item works!</p>
+<mat-list role="list" [ngClass]="{'selected': collection.selected}">
+    <treo-card>
+        <mat-list-item role="listitem">{{collection.title}}</mat-list-item>
+        <button  mat-icon-button [color]="'accent'" (click)="edit()">
+            <mat-icon>edit</mat-icon>
+        </button>
+        <button  mat-icon-button [color]="'accent'" (click)="delete()">
+            <mat-icon>delete</mat-icon>
+        </button>
+    </treo-card>
+</mat-list>

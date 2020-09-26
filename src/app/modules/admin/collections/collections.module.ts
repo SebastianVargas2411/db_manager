@@ -23,6 +23,7 @@ import { MatTableModule } from '@angular/material/table';
 import { FieldFormComponent } from './components/field-form/field-form.component';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import {MatListModule} from '@angular/material/list';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatTableModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatListModule
   ]
 })
 export class CollectionsModule { }

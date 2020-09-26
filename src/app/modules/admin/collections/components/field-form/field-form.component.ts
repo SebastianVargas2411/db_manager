@@ -89,14 +89,14 @@ export class FieldFormComponent implements OnInit {
     }
   }
 
-  emitAction(){
-    this._emitAction.emit(this.emitObject);
-  }
-
   save(){
     console.log(this.fieldForm.value)
     this.emitObject = {action:1, value: this.fieldForm.value}
     this.emitAction();
+  }
+  
+  emitAction(){
+    this._emitAction.emit(this.emitObject);
   }
 
   delete(){

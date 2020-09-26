@@ -3,6 +3,7 @@ import { ColorPickerService, Cmyk } from 'ngx-color-picker';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { Project } from '../../models/project.model';
+import { ProjectService } from '../../services/project.service';
 
 
 @Component({
@@ -33,13 +34,15 @@ export class ProjectFormComponent implements OnInit {
     ],
     alias: [
       {type:"required", message:"El alias es requerido"},
-      {type:"minlength", message:"El alias debe ser minimo de 3 letras"}
+      {type:"minlength", message:"El alias debe ser minimo de 3 letras"},
+      {type:"pattern", message:"no puede contener caracteres especiales ni mayusculas"}
     ]
   };
 
   constructor(
     private cpService: ColorPickerService,
     private formBuilder:FormBuilder,
+    private projectService:ProjectService
     ) {
       this.projectForm = this.formBuilder.group({
         title: new FormControl(
@@ -53,15 +56,16 @@ export class ProjectFormComponent implements OnInit {
           "", 
           Validators.compose([
           Validators.required,
-          Validators.minLength(3)
+          Validators.minLength(3),
+          Validators.pattern("^[a-z0-9_]+[a-z0-9_ ]+$"),
         ])
         ),
-        color_p: new FormControl(
+        color_principal: new FormControl(
           this.colorPrincipal, 
          
         ),
         
-        color_t: new FormControl(this.colorText,
+        color_text: new FormControl(this.colorText,
 
         ),
       },
@@ -89,7 +93,18 @@ export class ProjectFormComponent implements OnInit {
   }
 
   save(value){
-    console.log(value);
+    console.log(value)
+    this.projectService.createProject(value).subscribe(response => {
+      let res:any = response; 
+      if(res.status == 200){   
+        this.projectForm.reset();
+        console.log(res.message)
+      }
+      else {
+        console.log("else",res.message);
+        console.log("else", res.status);
+      }
+    });
   }
 
   close(){
@@ -112,5 +127,12 @@ export class ProjectFormComponent implements OnInit {
       // show message
   }
 
-  
+  aliasChange(){
+    this.projectForm.patchValue({
+      alias: this.replaceSpace(this.projectForm.value.alias)
+    })    
+  }
+  replaceSpace(value){
+    return value.split(' ').join('_');
+  } 
 }

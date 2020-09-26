@@ -57,6 +57,7 @@
     <div class="col-span-6 bg-card shadow rounded p-4 mt-4">
         <div class="flex items-center justify-end px-4">
             <!--button *ngIf="cancelable" (click)="close()" mat-button>Cancelar</button-->
+            <button *ngIf="cancelable" (click)="close()" mat-button>Cancelar</button>
             <button class="px-6 ml-3" mat-flat-button [color]="'primary'" [disabled]="!collectionForm.valid"
                 (click)="save(collectionForm.value)">
                 Agregar

@@ -1,5 +1,4 @@
-<p>collection-form-modal works!</p>
 <h2 mat-dialog-title>{{ editable ? 'Editar Colección' : 'Agregar Colección'}}</h2>
 <mat-dialog-content class="p-4">
-    <app-collection-form  [editable]="editable" cancelable="true" (closeModal)="close($event)"></app-collection-form>
+    <app-collection-form  [editable]="editable" [collection]="collection" cancelable="true" (closeModal)="close($event)"></app-collection-form>
 </mat-dialog-content>
