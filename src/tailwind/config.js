@@ -432,7 +432,8 @@ module.exports = {
         transitionProperty      : [],
         transitionTimingFunction: [],
         transitionDuration      : [],
-        transitionDelay         : []
+        transitionDelay         : [],
+        
     },
 
     // Core plugins

@@ -15,6 +15,7 @@ import { appRoutes } from 'app/app.routing';
 import { ConfigurationComponent } from './modules/admin/configuration/configuration.component';
 import { MatCardModule } from '@angular/material/card';
 
+
 const routerConfig: ExtraOptions = {
     scrollPositionRestoration: 'enabled',
     preloadingStrategy       : PreloadAllModules
@@ -24,6 +25,7 @@ const routerConfig: ExtraOptions = {
     declarations: [
         AppComponent,
         ConfigurationComponent,
+        
     ],
     imports     : [
         BrowserModule,

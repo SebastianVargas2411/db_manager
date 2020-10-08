@@ -1,0 +1,63 @@
+<div class="bg-card shadow rounded p-8 mt-4">
+    <div class="text-lg font-bold mb-2">Consultas</div>
+    
+    <form [formGroup]="endpointForm">
+        <div class="p-4 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-6 xl:grid-cols-6 gap-4">
+            <mat-form-field>
+                <mat-label>Colección<mat-label style="color: red;">*</mat-label></mat-label>
+                <mat-select formControlName="collection" (selectionChange)="onChangeCollection()">
+                    <mat-option *ngFor="let c of collections" [value]="c.id">
+                    {{c.collection}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Metodos<mat-label style="color: red;">*</mat-label></mat-label>
+                <mat-select formControlName="method" (selectionChange)="onChangeMethod()">
+                    <mat-option *ngFor="let m of methods" [value]="m.id">
+                    {{m.method}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Titulo Endpoint<mat-label style="color: red;">*</mat-label>
+                </mat-label>
+                <input matInput formControlName="title" />
+                <mat-icon matSuffix [svgIcon]="'create_new_folder'"></mat-icon>
+
+                <mat-hint>
+                    <ng-container *ngFor="let validation of validation_messages.title">
+                        {{
+                        endpointForm.get("title").hasError(validation.type) &&
+                        (endpointForm.get("title").dirty ||
+                        endpointForm.get("title").touched)
+                            ? validation.message
+                            : ""
+                        }}
+                    </ng-container>
+                </mat-hint>
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Alias Endpoint<mat-label style="color: red;">*</mat-label>
+                </mat-label>
+                <input  (change)="aliasChange()" matInput formControlName="alias" />
+                <mat-icon matSuffix [svgIcon]="'library_add'"></mat-icon>
+                <mat-hint>
+                    <ng-container *ngFor="let validation of validation_messages.alias">
+                        {{
+                        endpointForm.get("alias").hasError(validation.type) &&
+                        (endpointForm.get("alias").dirty ||
+                        endpointForm.get("alias").touched)
+                        ? validation.message
+                        : ""
+                        }}
+                    </ng-container>
+                </mat-hint>
+            </mat-form-field>
+            <div style="display: flex; justify-content: start; align-items: center">
+                <mat-checkbox class="example-margin" formControlName="public">Publico</mat-checkbox>
+            </div>
+        </div>
+
+    </form>
+</div>

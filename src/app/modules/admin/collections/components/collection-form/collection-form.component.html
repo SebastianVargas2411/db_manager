@@ -60,8 +60,9 @@
             <button *ngIf="cancelable" (click)="close()" mat-button>Cancelar</button>
             <button class="px-6 ml-3" mat-flat-button [color]="'primary'" [disabled]="!collectionForm.valid"
                 (click)="save(collectionForm.value)">
-                Agregar
+                Guardar
             </button>
         </div>
     </div>
+    <app-endpoint-container></app-endpoint-container>  
 </form>

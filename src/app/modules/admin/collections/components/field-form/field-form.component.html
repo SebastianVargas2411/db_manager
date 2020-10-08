@@ -81,7 +81,7 @@
         <div style="display: flex; justify-content: start; align-items: center">
             <button *ngIf="!editable" class="px-6 ml-3" mat-flat-button [color]="'primary'" [disabled]="!fieldForm.valid"
                 (click)="save()">
-                Guardar
+                Agregar
             </button>
             <div>
                 <button *ngIf="editable" class="ml-3"  mat-stroked-button [color]="'secondary'" [disabled]="!update || !fieldForm.valid"

@@ -24,10 +24,17 @@ import { FieldFormComponent } from './components/field-form/field-form.component
 import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import {MatListModule} from '@angular/material/list';
+import { EndpointFormComponent } from './components/endpoint-container/endpoint-form/endpoint-form.component';
+import {MatStepperModule} from '@angular/material/stepper';
+import { FieldEpFormComponent } from './components/endpoint-container/field-ep-form/field-ep-form.component';
+import { EndpointContainerComponent } from './components/endpoint-container/endpoint-container.component';
+import { RuleStepComponent } from './components/endpoint-container/rule-step/rule-step.component';
+import { RuleFormComponent } from './components/endpoint-container/rule-step/rule-form/rule-form.component';
+import { RuleFieldFormComponent } from './components/endpoint-container/rule-step/rule-form/rule-field-form/rule-field-form.component';
 
 
 @NgModule({
-  declarations: [CollectionsComponent, NewCollectionComponent, CollectionFormComponent, CollectionFormModalComponent, CollectionListItemComponent, FieldFormComponent],
+  declarations: [CollectionsComponent, NewCollectionComponent, CollectionFormComponent, CollectionFormModalComponent, CollectionListItemComponent, FieldFormComponent, EndpointFormComponent, FieldEpFormComponent, EndpointContainerComponent, RuleStepComponent, RuleFormComponent, RuleFieldFormComponent],
   imports: [
     CommonModule,
     CollectionsRoutingModule,
@@ -45,7 +52,8 @@ import {MatListModule} from '@angular/material/list';
     MatTableModule,
     MatSelectModule,
     MatCheckboxModule,
-    MatListModule
+    MatListModule,
+    MatStepperModule
   ]
 })
 export class CollectionsModule { }
